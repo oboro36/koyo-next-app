@@ -93,6 +93,34 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./base/axios.js":
+/*!***********************!*\
+  !*** ./base/axios.js ***!
+  \***********************/
+/*! exports provided: invokeApi */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "invokeApi", function() { return invokeApi; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+const http = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+  mode: 'cors',
+  withCredentials: true
+});
+const apiAddress = "http://localhost:1323";
+function invokeApi(method, url, callbackOK, callbackNG) {
+  http[method](apiAddress + url).then(resp => {
+    return callbackOK(resp);
+  }).catch(err => {
+    return callbackNG(err);
+  });
+}
+
+/***/ }),
+
 /***/ "./components/footer.js":
 /*!******************************!*\
   !*** ./components/footer.js ***!
@@ -104,7 +132,7 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "C:\\Apache24\\app\\koyo\\next-app\\components\\footer.js";
+var _jsxFileName = "D:\\Projects\\koyo\\next-app\\components\\footer.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 const style = {
@@ -182,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Apache24\\app\\koyo\\next-app\\components\\header.js";
+var _jsxFileName = "D:\\Projects\\koyo\\next-app\\components\\header.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement;
 
@@ -316,6 +344,209 @@ const Header = () => __jsx("div", {
 
 /***/ }),
 
+/***/ "./components/login.js":
+/*!*****************************!*\
+  !*** ./components/login.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! antd/lib/button/style/css */ "./node_modules/antd/lib/button/style/css.js");
+/* harmony import */ var antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_lib_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd/lib/button */ "antd/lib/button");
+/* harmony import */ var antd_lib_button__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_lib_button__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_lib_form_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! antd/lib/form/style/css */ "./node_modules/antd/lib/form/style/css.js");
+/* harmony import */ var antd_lib_form_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_lib_form_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_lib_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd/lib/form */ "antd/lib/form");
+/* harmony import */ var antd_lib_form__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_lib_form__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var antd_lib_input_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd/lib/input/style/css */ "./node_modules/antd/lib/input/style/css.js");
+/* harmony import */ var antd_lib_input_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_lib_input_style_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var antd_lib_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd/lib/input */ "antd/lib/input");
+/* harmony import */ var antd_lib_input__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(antd_lib_input__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd/lib/icon/style/css */ "./node_modules/antd/lib/icon/style/css.js");
+/* harmony import */ var antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var antd_lib_icon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd/lib/icon */ "antd/lib/icon");
+/* harmony import */ var antd_lib_icon__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(antd_lib_icon__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _base_axios__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../base/axios */ "./base/axios.js");
+
+
+
+
+
+
+
+
+
+
+var _jsxFileName = "D:\\Projects\\koyo\\next-app\\components\\login.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_10___default.a.createElement;
+
+
+function hasErrors(fieldsError) {
+  return _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_9___default()(fieldsError).some(field => fieldsError[field]);
+}
+
+class LoginForm extends react__WEBPACK_IMPORTED_MODULE_10___default.a.Component {
+  constructor(...args) {
+    super(...args);
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "handleSubmit", e => {
+      e.preventDefault();
+      this.props.form.validateFields((err, values) => {
+        if (!err) {
+          this.doLogin(values.username, values.password);
+        }
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "doLogin", (u, p) => {
+      Object(_base_axios__WEBPACK_IMPORTED_MODULE_11__["invokeApi"])('post', '/login?username=' + u + '&password=' + p, res => {
+        console.log(res.data);
+        this.doSetCookie(u, res.data.token);
+      }, err => {
+        alert(err);
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "doSetCookie", (u, t) => {
+      Object(_base_axios__WEBPACK_IMPORTED_MODULE_11__["invokeApi"])('post', '/writecookie?username=' + u + '&token=' + t, res => {
+        console.log(res.data);
+      }, err => {
+        alert(err);
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "doGetCookie", u => {
+      Object(_base_axios__WEBPACK_IMPORTED_MODULE_11__["invokeApi"])('post', '/readcookie?username=' + u, res => {
+        console.log(res.data);
+      }, err => {
+        alert(err);
+      });
+    });
+  }
+
+  componentDidMount() {
+    // To disabled submit button at the beginning.
+    this.props.form.validateFields();
+  }
+
+  render() {
+    const {
+      getFieldDecorator,
+      getFieldsError,
+      getFieldError,
+      isFieldTouched
+    } = this.props.form; // Only show error after a field is touched.
+
+    const usernameError = isFieldTouched('username') && getFieldError('username');
+    const passwordError = isFieldTouched('password') && getFieldError('password');
+    return __jsx(antd_lib_form__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      layout: "inline",
+      onSubmit: this.handleSubmit,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 65
+      },
+      __self: this
+    }, __jsx(antd_lib_form__WEBPACK_IMPORTED_MODULE_3___default.a.Item, {
+      validateStatus: usernameError ? 'error' : '',
+      help: usernameError || '',
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 66
+      },
+      __self: this
+    }, getFieldDecorator('username', {
+      rules: [{
+        required: true,
+        message: 'Please input your username!'
+      }]
+    })(__jsx(antd_lib_input__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      prefix: __jsx(antd_lib_icon__WEBPACK_IMPORTED_MODULE_7___default.a, {
+        type: "user",
+        style: {
+          color: 'rgba(0,0,0,.25)'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 71
+        },
+        __self: this
+      }),
+      placeholder: "Username",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 70
+      },
+      __self: this
+    }))), __jsx(antd_lib_form__WEBPACK_IMPORTED_MODULE_3___default.a.Item, {
+      validateStatus: passwordError ? 'error' : '',
+      help: passwordError || '',
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 76
+      },
+      __self: this
+    }, getFieldDecorator('password', {
+      rules: [{
+        required: true,
+        message: 'Please input your Password!'
+      }]
+    })(__jsx(antd_lib_input__WEBPACK_IMPORTED_MODULE_5___default.a, {
+      prefix: __jsx(antd_lib_icon__WEBPACK_IMPORTED_MODULE_7___default.a, {
+        type: "lock",
+        style: {
+          color: 'rgba(0,0,0,.25)'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 81
+        },
+        __self: this
+      }),
+      type: "password",
+      placeholder: "Password",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 80
+      },
+      __self: this
+    }))), __jsx(antd_lib_form__WEBPACK_IMPORTED_MODULE_3___default.a.Item, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 87
+      },
+      __self: this
+    }, __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      type: "primary",
+      htmlType: "submit",
+      disabled: hasErrors(getFieldsError()),
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 88
+      },
+      __self: this
+    }, "Log in")));
+  }
+
+}
+
+const WrappedLoginForm = antd_lib_form__WEBPACK_IMPORTED_MODULE_3___default.a.create({
+  name: 'horizontal_login'
+})(LoginForm);
+
+/* harmony default export */ __webpack_exports__["default"] = (WrappedLoginForm);
+
+/***/ }),
+
 /***/ "./components/mainlayout.js":
 /*!**********************************!*\
   !*** ./components/mainlayout.js ***!
@@ -340,7 +571,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Apache24\\app\\koyo\\next-app\\components\\mainlayout.js";
+var _jsxFileName = "D:\\Projects\\koyo\\next-app\\components\\mainlayout.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement;
 
@@ -462,33 +693,37 @@ class MainLayout extends react__WEBPACK_IMPORTED_MODULE_4___default.a.Component 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! antd/lib/icon/style/css */ "./node_modules/antd/lib/icon/style/css.js");
-/* harmony import */ var antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd_lib_icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd/lib/icon */ "antd/lib/icon");
-/* harmony import */ var antd_lib_icon__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_lib_icon__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! antd/lib/button/style/css */ "./node_modules/antd/lib/button/style/css.js");
-/* harmony import */ var antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var antd_lib_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd/lib/button */ "antd/lib/button");
-/* harmony import */ var antd_lib_button__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_lib_button__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var antd_lib_avatar_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd/lib/avatar/style/css */ "./node_modules/antd/lib/avatar/style/css.js");
-/* harmony import */ var antd_lib_avatar_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_lib_avatar_style_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var antd_lib_avatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd/lib/avatar */ "antd/lib/avatar");
-/* harmony import */ var antd_lib_avatar__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(antd_lib_avatar__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var antd_lib_menu_style_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd/lib/menu/style/css */ "./node_modules/antd/lib/menu/style/css.js");
-/* harmony import */ var antd_lib_menu_style_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(antd_lib_menu_style_css__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var antd_lib_menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd/lib/menu */ "antd/lib/menu");
-/* harmony import */ var antd_lib_menu__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(antd_lib_menu__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var antd_lib_layout_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd/lib/layout/style/css */ "./node_modules/antd/lib/layout/style/css.js");
-/* harmony import */ var antd_lib_layout_style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_lib_layout_style_css__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var antd_lib_layout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd/lib/layout */ "antd/lib/layout");
-/* harmony import */ var antd_lib_layout__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(antd_lib_layout__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! next/router */ "next/router");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var antd_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! antd/lib/modal/style/css */ "./node_modules/antd/lib/modal/style/css.js");
+/* harmony import */ var antd_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(antd_lib_modal_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var antd_lib_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd/lib/modal */ "antd/lib/modal");
+/* harmony import */ var antd_lib_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_lib_modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! antd/lib/icon/style/css */ "./node_modules/antd/lib/icon/style/css.js");
+/* harmony import */ var antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd_lib_icon_style_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var antd_lib_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd/lib/icon */ "antd/lib/icon");
+/* harmony import */ var antd_lib_icon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd_lib_icon__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd/lib/button/style/css */ "./node_modules/antd/lib/button/style/css.js");
+/* harmony import */ var antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(antd_lib_button_style_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var antd_lib_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd/lib/button */ "antd/lib/button");
+/* harmony import */ var antd_lib_button__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(antd_lib_button__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var antd_lib_avatar_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd/lib/avatar/style/css */ "./node_modules/antd/lib/avatar/style/css.js");
+/* harmony import */ var antd_lib_avatar_style_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(antd_lib_avatar_style_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var antd_lib_avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd/lib/avatar */ "antd/lib/avatar");
+/* harmony import */ var antd_lib_avatar__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(antd_lib_avatar__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var antd_lib_menu_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd/lib/menu/style/css */ "./node_modules/antd/lib/menu/style/css.js");
+/* harmony import */ var antd_lib_menu_style_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(antd_lib_menu_style_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var antd_lib_menu__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! antd/lib/menu */ "antd/lib/menu");
+/* harmony import */ var antd_lib_menu__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(antd_lib_menu__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var antd_lib_layout_style_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd/lib/layout/style/css */ "./node_modules/antd/lib/layout/style/css.js");
+/* harmony import */ var antd_lib_layout_style_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(antd_lib_layout_style_css__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var antd_lib_layout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd/lib/layout */ "antd/lib/layout");
+/* harmony import */ var antd_lib_layout__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(antd_lib_layout__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_15__);
 
 
 
@@ -500,28 +735,61 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Apache24\\app\\koyo\\next-app\\components\\sidebar.js";
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement;
+
+var _jsxFileName = "D:\\Projects\\koyo\\next-app\\components\\sidebar.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_13___default.a.createElement;
 
 
 const {
   Sider
-} = antd_lib_layout__WEBPACK_IMPORTED_MODULE_10___default.a;
+} = antd_lib_layout__WEBPACK_IMPORTED_MODULE_12___default.a;
 const {
   SubMenu
-} = antd_lib_menu__WEBPACK_IMPORTED_MODULE_8___default.a;
+} = antd_lib_menu__WEBPACK_IMPORTED_MODULE_10___default.a;
 
-class SideBar extends react__WEBPACK_IMPORTED_MODULE_11___default.a.Component {
+class SideBar extends react__WEBPACK_IMPORTED_MODULE_13___default.a.Component {
   constructor(props) {
     super(props);
 
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(this, "state", {
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "state", {
+      //Modal
+      ModalText: 'Please set up your settings below.',
+      visible: false,
+      confirmLoading: false,
+      //Side Bar
       collapsed: false,
       content: 'main'
     });
 
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(this, "onCollapse", collapsed => {
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "showModal", () => {
+      this.setState({
+        visible: true
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "handleOk", () => {
+      this.setState({
+        ModalText: 'Setting in process . . . ',
+        confirmLoading: true
+      });
+      setTimeout(() => {
+        this.setState({
+          visible: false,
+          confirmLoading: false
+        });
+      }, 2000);
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "handleCancel", () => {
+      console.log('Clicked cancel button');
+      this.setState({
+        visible: false
+      });
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "onCollapse", collapsed => {
       this.setState({
         collapsed
       });
@@ -531,18 +799,15 @@ class SideBar extends react__WEBPACK_IMPORTED_MODULE_11___default.a.Component {
       this.props.doCollapse(collapsed);
     });
 
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(this, "handleMenuClick", event => {
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "handleMenuClick", event => {
       const pageName = event.item.props.name;
       this.setContent(pageName);
-      next_router__WEBPACK_IMPORTED_MODULE_12___default.a.push({
-        pathname: '/' + pageName,
-        query: {
-          name: 'PALM'
-        }
-      });
+      next_router__WEBPACK_IMPORTED_MODULE_14___default.a.push({
+        pathname: '/' + pageName
+      }); // Router.push({ pathname: '/' + pageName, query: { name: 'PALM' } })
     });
 
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(this, "setContent", content => {
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(this, "setContent", content => {
       this.setState({
         content: content
       });
@@ -553,7 +818,7 @@ class SideBar extends react__WEBPACK_IMPORTED_MODULE_11___default.a.Component {
       display: 'flex',
       height: '100%',
       columnGap: '5px',
-      justifyContent: 'center',
+      justifyContent: 'space-around',
       alignItems: 'center',
       margin: '10px 10px 10px 10px',
       padding: '5px',
@@ -586,131 +851,132 @@ class SideBar extends react__WEBPACK_IMPORTED_MODULE_11___default.a.Component {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 60
+        lineNumber: 92
       },
       __self: this
     }, __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 68
+        lineNumber: 100
       },
       __self: this
     }, __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 102
       },
       __self: this
     }, this.state.collapsed ? __jsx("div", {
       style: this.style,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 72
+        lineNumber: 104
       },
       __self: this
-    }, __jsx(antd_lib_avatar__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    }, __jsx(antd_lib_avatar__WEBPACK_IMPORTED_MODULE_7___default.a, {
       icon: "user",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 73
+        lineNumber: 105
       },
       __self: this
     })) : __jsx("div", {
       style: this.style,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 76
+        lineNumber: 108
       },
       __self: this
-    }, __jsx(antd_lib_avatar__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    }, __jsx(antd_lib_avatar__WEBPACK_IMPORTED_MODULE_7___default.a, {
       icon: "user",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 77
+        lineNumber: 109
       },
       __self: this
     }), __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 78
+        lineNumber: 110
       },
       __self: this
-    }, " Mr.Palm "), __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    }, " Mr.Palm "), __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_5___default.a, {
       type: "primary",
       shape: "circle",
       icon: "setting",
       size: "default",
+      onClick: this.showModal,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 111
       },
       __self: this
-    }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_13___default.a, {
+    }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_15___default.a, {
       href: "/",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 112
       },
       __self: this
-    }, __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    }, __jsx(antd_lib_button__WEBPACK_IMPORTED_MODULE_5___default.a, {
       type: "danger",
       shape: "circle",
       icon: "logout",
       size: "default",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 81
+        lineNumber: 113
       },
       __self: this
-    })))), __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    })))), __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_10___default.a, {
       theme: "dark",
       mode: "inline",
       onClick: this.handleMenuClick,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 86
+        lineNumber: 118
       },
       __self: this
-    }, __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_8___default.a.Item, {
+    }, __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_10___default.a.Item, {
       key: "1",
       name: "main",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 87
+        lineNumber: 119
       },
       __self: this
-    }, __jsx(antd_lib_icon__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    }, __jsx(antd_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
       type: "pie-chart",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 88
+        lineNumber: 120
       },
       __self: this
     }), __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 89
+        lineNumber: 121
       },
       __self: this
-    }, "Dashboard")), __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_8___default.a.Item, {
+    }, "Dashboard")), __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_10___default.a.Item, {
       key: "2",
       name: "about",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 123
       },
       __self: this
-    }, __jsx(antd_lib_icon__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    }, __jsx(antd_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
       type: "file",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 92
+        lineNumber: 124
       },
       __self: this
     }), __jsx("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 93
+        lineNumber: 125
       },
       __self: this
     }, "About")), __jsx(SubMenu, {
@@ -718,43 +984,60 @@ class SideBar extends react__WEBPACK_IMPORTED_MODULE_11___default.a.Component {
       title: __jsx("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 130
         },
         __self: this
-      }, __jsx(antd_lib_icon__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      }, __jsx(antd_lib_icon__WEBPACK_IMPORTED_MODULE_3___default.a, {
         type: "user",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 131
         },
         __self: this
       }), __jsx("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 100
+          lineNumber: 132
         },
         __self: this
       }, "Utility")),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 95
+        lineNumber: 127
       },
       __self: this
-    }, __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_8___default.a.Item, {
+    }, __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_10___default.a.Item, {
       key: "3",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 104
+        lineNumber: 136
       },
       __self: this
-    }, "Site Data Compare"), __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_8___default.a.Item, {
+    }, "Site Data Compare"), __jsx(antd_lib_menu__WEBPACK_IMPORTED_MODULE_10___default.a.Item, {
       key: "4",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 105
+        lineNumber: 137
       },
       __self: this
-    }, "Transfer File")))));
+    }, "Transfer File")))), __jsx(antd_lib_modal__WEBPACK_IMPORTED_MODULE_1___default.a, {
+      title: "User Config",
+      visible: this.state.visible,
+      onOk: this.handleOk,
+      confirmLoading: this.state.confirmLoading,
+      onCancel: this.handleCancel,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 141
+      },
+      __self: this
+    }, __jsx("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 148
+      },
+      __self: this
+    }, this.state.ModalText)));
   }
 
 }
@@ -1242,6 +1525,37 @@ __webpack_require__(/*! ../../button/style/css */ "./node_modules/antd/lib/butto
 
 /***/ }),
 
+/***/ "./node_modules/antd/lib/form/style/css.js":
+/*!*************************************************!*\
+  !*** ./node_modules/antd/lib/form/style/css.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(/*! ../../style/index.css */ "./node_modules/antd/lib/style/index.css");
+
+__webpack_require__(/*! ./index.css */ "./node_modules/antd/lib/form/style/index.css");
+
+__webpack_require__(/*! ../../grid/style/css */ "./node_modules/antd/lib/grid/style/css.js");
+//# sourceMappingURL=css.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/antd/lib/form/style/index.css":
+/*!****************************************************!*\
+  !*** ./node_modules/antd/lib/form/style/index.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./node_modules/antd/lib/grid/style/css.js":
 /*!*************************************************!*\
   !*** ./node_modules/antd/lib/grid/style/css.js ***!
@@ -1293,6 +1607,37 @@ __webpack_require__(/*! ./index.css */ "./node_modules/antd/lib/icon/style/index
 /*!****************************************************!*\
   !*** ./node_modules/antd/lib/icon/style/index.css ***!
   \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/antd/lib/input/style/css.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/lib/input/style/css.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(/*! ../../style/index.css */ "./node_modules/antd/lib/style/index.css");
+
+__webpack_require__(/*! ./index.css */ "./node_modules/antd/lib/input/style/index.css");
+
+__webpack_require__(/*! ../../button/style/css */ "./node_modules/antd/lib/button/style/css.js");
+//# sourceMappingURL=css.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/antd/lib/input/style/index.css":
+/*!*****************************************************!*\
+  !*** ./node_modules/antd/lib/input/style/index.css ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1353,6 +1698,37 @@ __webpack_require__(/*! ../../tooltip/style/css */ "./node_modules/antd/lib/tool
 /*!****************************************************!*\
   !*** ./node_modules/antd/lib/menu/style/index.css ***!
   \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/antd/lib/modal/style/css.js":
+/*!**************************************************!*\
+  !*** ./node_modules/antd/lib/modal/style/css.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(/*! ../../style/index.css */ "./node_modules/antd/lib/style/index.css");
+
+__webpack_require__(/*! ./index.css */ "./node_modules/antd/lib/modal/style/index.css");
+
+__webpack_require__(/*! ../../button/style/css */ "./node_modules/antd/lib/button/style/css.js");
+//# sourceMappingURL=css.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/antd/lib/modal/style/index.css":
+/*!*****************************************************!*\
+  !*** ./node_modules/antd/lib/modal/style/index.css ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -3136,34 +3512,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/app */ "./node_modules/next/app.js");
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_mainlayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/mainlayout */ "./components/mainlayout.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login */ "./pages/login.js");
 
 
-var _jsxFileName = "C:\\Apache24\\app\\koyo\\next-app\\pages\\_app.js";
+var _jsxFileName = "D:\\Projects\\koyo\\next-app\\pages\\_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
- // import Login from '../components/login'
 
 class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_3___default.a {
   constructor(props) {
     super(props);
 
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "setLoggedState", data => {
-      this.setState({
-        logged: data
-      });
-    });
-
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])(this, "isLoggedIn", () => {
-      return this.state.logged;
+      let res = true;
+      return res;
     });
 
-    this.state = {
-      logged: false
-    };
+    this.state = {};
   }
 
   static async getInitialProps({
@@ -3172,6 +3539,7 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_3___default.a {
     ctx
   }) {
     let pageProps = {};
+    console.log(router);
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
@@ -3180,47 +3548,105 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_3___default.a {
     return {
       pageProps
     };
-  } // componentDidMount(){
-  //     this.authen()
-  // }
-  // authen = () => {
-  //     axios.post('http://localhost:1323/auth', config)
-  //             .then(response => {
-  //                 let result = response.data
-  //                 console.log(result)
-  //                 self.setState({ logged: true })
-  //             })
-  //             .catch(error => {
-  //                 alert(error)
-  //                 self.setState({ logged: false })
-  //             });
-  // } 
-
+  }
 
   render() {
     const {
       Component,
       pageProps
     } = this.props;
-    return (// this.isLoggedIn() ? (
-      __jsx(_components_mainlayout__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 57
-        },
-        __self: this
-      }, __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 58
-        },
-        __self: this
-      }))) // ) : <Login setLoggedState={this.setLoggedState} />
-
-    );
+    return this.isLoggedIn() ? __jsx(_components_mainlayout__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 35
+      },
+      __self: this
+    }, __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+      },
+      __self: this
+    }))) : __jsx(_login__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 39
+      },
+      __self: this
+    });
   }
 
 }
+
+/***/ }),
+
+/***/ "./pages/login.js":
+/*!************************!*\
+  !*** ./pages/login.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-jsx/style */ "styled-jsx/style");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/login */ "./components/login.js");
+/* harmony import */ var _base_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../base/axios */ "./base/axios.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
+var _jsxFileName = "D:\\Projects\\koyo\\next-app\\pages\\login.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+
+class Login extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount() {
+    next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push('/login', '/login', {
+      shallow: true
+    });
+  }
+
+  render() {
+    return __jsx("div", {
+      className: "jsx-1769287008" + " " + "center",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19
+      },
+      __self: this
+    }, __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
+      id: "1769287008",
+      __self: this
+    }, ".center.jsx-1769287008{height:100vh;width:100%;position:relative;border:3px solid green;}.center.jsx-1769287008 .loginform.jsx-1769287008{margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkQ6XFxQcm9qZWN0c1xca295b1xcbmV4dC1hcHBcXHBhZ2VzXFxsb2dpbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFtQjRCLEFBR2tDLEFBTUosU0FDUyxJQU5QLFdBQ08sR0FNVixRQUNDLE9BTmMsRUFPYSxxQkFOeEMsY0FPb0MseUdBQ3BDIiwiZmlsZSI6IkQ6XFxQcm9qZWN0c1xca295b1xcbmV4dC1hcHBcXHBhZ2VzXFxsb2dpbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcclxuaW1wb3J0IExvZ2luRm9ybSBmcm9tICcuLi9jb21wb25lbnRzL2xvZ2luJ1xyXG5pbXBvcnQgeyBpbnZva2VBcGkgfSBmcm9tICcuLi9iYXNlL2F4aW9zJ1xyXG5cclxuaW1wb3J0IFJvdXRlciBmcm9tICduZXh0L3JvdXRlcidcclxuXHJcbmNsYXNzIExvZ2luIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcclxuICAgIGNvbnN0cnVjdG9yKHByb3BzKSB7XHJcbiAgICAgICAgc3VwZXIocHJvcHMpXHJcbiAgICAgICAgdGhpcy5zdGF0ZSA9IHt9XHJcbiAgICB9XHJcblxyXG4gICAgY29tcG9uZW50RGlkTW91bnQoKSB7XHJcbiAgICAgICAgUm91dGVyLnB1c2goJy9sb2dpbicsICcvbG9naW4nLCB7IHNoYWxsb3c6IHRydWUgfSk7XHJcbiAgICB9XHJcblxyXG4gICAgcmVuZGVyKCkge1xyXG4gICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY2VudGVyXCI+XHJcbiAgICAgICAgICAgICAgICA8c3R5bGUganN4PntgXHJcbiAgICAgICAgICAgICAgICAuY2VudGVyIHtcclxuICAgICAgICAgICAgICAgICAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgICAgICAgICAgICAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgICAgICAgICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgICAgICAgICAgICAgICAgICBib3JkZXI6IDNweCBzb2xpZCBncmVlbjsgXHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICAuY2VudGVyIC5sb2dpbmZvcm0ge1xyXG4gICAgICAgICAgICAgICAgICAgIG1hcmdpbjogMDtcclxuICAgICAgICAgICAgICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICAgICAgICAgICAgICAgICAgdG9wOiA1MCU7XHJcbiAgICAgICAgICAgICAgICAgICAgbGVmdDogNTAlO1xyXG4gICAgICAgICAgICAgICAgICAgIC1tcy10cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcclxuICAgICAgICAgICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcclxuICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIGB9PC9zdHlsZT5cclxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibG9naW5mb3JtXCI+PExvZ2luRm9ybSAvPjwvZGl2PlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICApXHJcbiAgICB9XHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IExvZ2luIl19 */\n/*@ sourceURL=D:\\Projects\\koyo\\next-app\\pages\\login.js */"), __jsx("div", {
+      className: "jsx-1769287008" + " " + "loginform",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+      },
+      __self: this
+    }, __jsx(_components_login__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+      },
+      __self: this
+    })));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Login);
 
 /***/ }),
 
@@ -3280,6 +3706,17 @@ module.exports = require("antd/lib/col");
 
 /***/ }),
 
+/***/ "antd/lib/form":
+/*!********************************!*\
+  !*** external "antd/lib/form" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/form");
+
+/***/ }),
+
 /***/ "antd/lib/icon":
 /*!********************************!*\
   !*** external "antd/lib/icon" ***!
@@ -3288,6 +3725,17 @@ module.exports = require("antd/lib/col");
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/icon");
+
+/***/ }),
+
+/***/ "antd/lib/input":
+/*!*********************************!*\
+  !*** external "antd/lib/input" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/input");
 
 /***/ }),
 
@@ -3310,6 +3758,17 @@ module.exports = require("antd/lib/layout");
 /***/ (function(module, exports) {
 
 module.exports = require("antd/lib/menu");
+
+/***/ }),
+
+/***/ "antd/lib/modal":
+/*!*********************************!*\
+  !*** external "antd/lib/modal" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("antd/lib/modal");
 
 /***/ }),
 
@@ -3475,6 +3934,17 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
+
+/***/ }),
+
+/***/ "styled-jsx/style":
+/*!***********************************!*\
+  !*** external "styled-jsx/style" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("styled-jsx/style");
 
 /***/ }),
 

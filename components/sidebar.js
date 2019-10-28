@@ -1,4 +1,4 @@
-import { Layout, Menu, Icon, Row, Col, Avatar, Button, Breadcrumb } from 'antd';
+import { Layout, Menu, Icon, Row, Col, Avatar, Modal, Button, Breadcrumb } from 'antd';
 import Router from 'next/router'
 import Link from 'next/link'
 const { Sider } = Layout;
@@ -13,7 +13,7 @@ class SideBar extends React.Component {
             display: 'flex',
             height: '100%',
             columnGap: '5px',
-            justifyContent: 'center',
+            justifyContent: 'space-around',
             alignItems: 'center',
             margin: '10px 10px 10px 10px',
             padding: '5px',
@@ -35,8 +35,39 @@ class SideBar extends React.Component {
     // }
 
     state = {
+        //Modal
+        ModalText: 'Please set up your settings below.',
+        visible: false,
+        confirmLoading: false,
+        //Side Bar
         collapsed: false,
         content: 'main',
+    };
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+
+    handleOk = () => {
+        this.setState({
+            ModalText: 'Setting in process . . . ',
+            confirmLoading: true,
+        });
+        setTimeout(() => {
+            this.setState({
+                visible: false,
+                confirmLoading: false,
+            });
+        }, 2000);
+    };
+
+    handleCancel = () => {
+        console.log('Clicked cancel button');
+        this.setState({
+            visible: false,
+        });
     };
 
     onCollapse = collapsed => {
@@ -48,7 +79,8 @@ class SideBar extends React.Component {
     handleMenuClick = (event) => {
         const pageName = event.item.props.name
         this.setContent(pageName)
-        Router.push({ pathname: '/' + pageName, query: { name: 'PALM' } })
+        Router.push({ pathname: '/' + pageName})
+        // Router.push({ pathname: '/' + pageName, query: { name: 'PALM' } })
     }
 
     setContent = (content) => {
@@ -76,7 +108,7 @@ class SideBar extends React.Component {
                             <div style={this.style}>
                                 <Avatar icon="user" />
                                 <span> Mr.Palm </span>
-                                <Button type="primary" shape="circle" icon="setting" size="default" />
+                                <Button type="primary" shape="circle" icon="setting" size="default" onClick={this.showModal}/>
                                 <Link href="/">
                                     <Button type="danger" shape="circle" icon="logout" size="default" />
                                 </Link>
@@ -106,6 +138,15 @@ class SideBar extends React.Component {
                         </SubMenu>
                     </Menu>
                 </div>
+                <Modal
+                    title="User Config"
+                    visible={this.state.visible}
+                    onOk={this.handleOk}
+                    confirmLoading={this.state.confirmLoading}
+                    onCancel={this.handleCancel}
+                >
+                    <p>{this.state.ModalText}</p>
+                </Modal>
             </Sider>
         )
     }

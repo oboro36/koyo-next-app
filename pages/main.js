@@ -1,25 +1,20 @@
 import React from 'react'
 import { Card, Table, Button } from 'antd'
-import axios from 'axios'
+import LoginForm from '../components/login'
+import { invokeApi } from '../base/axios'
 
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
+        title: 'ID',
+        dataIndex: 'ID',
+        key: 'ID',
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        title: 'User Name',
+        dataIndex: 'UserName',
+        key: 'UserName',
     },
 ];
-
 
 class Main extends React.Component {
     constructor(props) {
@@ -28,16 +23,12 @@ class Main extends React.Component {
             loading: false,
             dataSource: [
                 {
-                    key: '1',
-                    name: 'テストくん',
-                    age: 18,
-                    address: '東京都、江戸川区',
+                    ID: '01',
+                    UserName: 'Zero One',
                 },
                 {
-                    key: '2',
-                    name: 'テストちゃん',
-                    age: 15,
-                    address: '東京都、江戸川区',
+                    ID: '02',
+                    UserName: 'Vulcan',
                 }
             ]
         }
@@ -49,26 +40,17 @@ class Main extends React.Component {
         this.setState({ loading: true })
 
         setTimeout(() => {
-            let config = {
-                mode: 'cors'
-            }
-
-            axios.post('http://localhost:1323/alluser', config)
-                .then(response => {
-                    // const result = response.data.result
-                    // console.log(response.data)
-                    let result = response.data
-
-                    console.log(result)
-
-                    // result.key = '1'
-                    // let ret = [result]
-                    // self.setState({ dataSource: ret })
+            invokeApi('post', '/alluser',
+                (res) => {
+                    let result = res.data
+                    self.setState({ dataSource: result })
                     self.setState({ loading: false })
-                })
-                .catch(error => {
-                    alert(error)
-                });
+                },
+                (err) => {
+                    alert(err)
+                    self.setState({ loading: false })
+                }
+            )
         }, 2000);
     }
 
@@ -78,12 +60,14 @@ class Main extends React.Component {
                 <Card>
                     <h1>Hello, Contents from "<strong>main.js</strong>" is being rendered as starter content</h1>
                 </Card>
-                <Card><Button type="primary" onClick={this.getPerson}>Try Me</Button></Card>
+                <Card><LoginForm /></Card>
+                <Card><Button type="primary" onClick={this.getPerson}>Get Data</Button></Card>
                 <Card>
                     <Table
                         columns={columns}
                         dataSource={this.state.dataSource}
                         loading={this.state.loading}
+                        rowKey="ID"
                     />
                 </Card>
             </div>
