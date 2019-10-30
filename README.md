@@ -1,2 +1,7 @@
 # koyo-next-app
-front end for koyo
+
+Front-end source file for KOYO :maple_leaf:
+
+Created from:
+
+React + Redux + Next.js
