@@ -2,6 +2,6 @@
 
 Front-end source file for KOYO :maple_leaf:
 
-Created from:
+Based on:
 
 React + Redux + Next.js
