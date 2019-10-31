@@ -1,6 +1,8 @@
 import React from 'react'
 import LoginForm from '../components/login'
-import { invokeApi } from '../base/axios'
+
+import { connect } from "react-redux";
+import store from "../redux/store";
 
 import Router from 'next/router'
 
@@ -13,6 +15,7 @@ class Login extends React.Component {
     componentDidMount() {
         Router.push('/login', '/login', { shallow: true });
     }
+    
 
     render() {
         return (
