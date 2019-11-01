@@ -1,10 +1,12 @@
 import React from 'react'
 import LoginForm from '../components/login'
 
-import { connect } from "react-redux";
-import store from "../redux/store";
-
 import Router from 'next/router'
+
+//Redux
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux"
+import * as allActions from "../redux/actions"
 
 class Login extends React.Component {
     constructor(props) {
@@ -13,9 +15,12 @@ class Login extends React.Component {
     }
 
     componentDidMount() {
-        Router.push('/login', '/login', { shallow: true });
+        console.log(this.props)
+        if (this.props.loggedIn == false) {
+            Router.push('/login', '/login', { shallow: true });
+        }
     }
-    
+
 
     render() {
         return (
@@ -42,4 +47,14 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+const mapStateToProps = state => {
+    return {
+        loggedIn: state.auth.loggedIn
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(allActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

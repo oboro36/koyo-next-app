@@ -2,11 +2,12 @@ import React from 'react'
 import App, { Container } from 'next/app'
 import MainLayout from '../components/mainlayout'
 import Login from './login'
-//Redux
 
-import { Provider, connect } from "react-redux";
-import store from "../redux/store";
+//Redux
 import withRedux from "next-redux-wrapper";
+import { Provider, connect } from "react-redux";
+import {makeStore} from "../redux/store";
+
 
 class MyApp extends App {
 
@@ -16,7 +17,7 @@ class MyApp extends App {
 
     static async getInitialProps({ Component, router, ctx }) {
         let pageProps = {}
-
+        
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)
         }
@@ -24,21 +25,18 @@ class MyApp extends App {
         return { pageProps }
     }
 
-    isLoggedIn = () => {
-        return false
-    }
-
     render() {
         const { Component, pageProps, store } = this.props
+
         return (
             <Provider store={store}>
                 {
-                    this.isLoggedIn() ? (
+                    store.getState().auth.loggedIn ? (
                         <MainLayout>
                             <Component {...pageProps} />
                         </MainLayout>
                     ) : (
-                            <Login />
+                            <Login/>
                         )
                 }
             </Provider>
@@ -46,4 +44,4 @@ class MyApp extends App {
     }
 }
 
-export default withRedux(store)(MyApp);
+export default withRedux(makeStore, {debug: true})(MyApp);
