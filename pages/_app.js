@@ -6,7 +6,7 @@ import Login from './login'
 //Redux
 import withRedux from "next-redux-wrapper";
 import { Provider, connect } from "react-redux";
-import {makeStore} from "../redux/store";
+import { makeStore } from "../redux/store";
 
 
 class MyApp extends App {
@@ -17,7 +17,7 @@ class MyApp extends App {
 
     static async getInitialProps({ Component, router, ctx }) {
         let pageProps = {}
-        
+
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)
         }
@@ -28,6 +28,11 @@ class MyApp extends App {
     render() {
         const { Component, pageProps, store } = this.props
 
+        store.subscribe(() => {
+            console.log('loggedIn has changed to ', store.getState().auth.loggedIn)
+            
+        });
+
         return (
             <Provider store={store}>
                 {
@@ -36,7 +41,7 @@ class MyApp extends App {
                             <Component {...pageProps} />
                         </MainLayout>
                     ) : (
-                            <Login/>
+                            <Login />
                         )
                 }
             </Provider>
@@ -44,4 +49,4 @@ class MyApp extends App {
     }
 }
 
-export default withRedux(makeStore, {debug: true})(MyApp);
+export default withRedux(makeStore, { debug: true })(MyApp);

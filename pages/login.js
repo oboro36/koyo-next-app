@@ -4,14 +4,11 @@ import LoginForm from '../components/login'
 import Router from 'next/router'
 
 //Redux
-import { bindActionCreators } from 'redux'
 import { connect } from "react-redux"
-import * as allActions from "../redux/actions"
 
 class Login extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
     }
 
     componentDidMount() {
@@ -53,8 +50,5 @@ const mapStateToProps = state => {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(allActions, dispatch)
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps)(Login)
