@@ -24,16 +24,15 @@ class MyApp extends App {
         return { pageProps }
     }
 
-    isLoggedIn = () => {
-        return false
-    }
+    //check login status from redux store
+    isLoggedIn = store => store.getState('loggedIn').auth.loggedIn
 
     render() {
         const { Component, pageProps, store } = this.props
         return (
             <Provider store={store}>
                 {
-                    this.isLoggedIn() ? (
+                    this.isLoggedIn(store) ? (
                         <MainLayout>
                             <Component {...pageProps} />
                         </MainLayout>

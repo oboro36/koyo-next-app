@@ -1,12 +1,33 @@
-import { Form, Icon, Input, Button } from 'antd';
-import {invokeApi} from '../base/axios'
+import { Form, Icon, Input, Button, notification } from 'antd'
+import { invokeApi } from '../base/axios'
 
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux"
+import { setLoggedIn } from "../redux/actions"
 
 function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
+const openNotification = type => {
+    notification[type]({
+        message: 'Authentication failed',
+        description:
+            'Please try another username or password.',
+        duration: 3,
+        onClick: () => {
+            console.log('Notification Clicked!');
+        },
+    });
+};
+
 class LoginForm extends React.Component {
+
+    constructor(props) {
+        super(props)
+
+    }
+
     componentDidMount() {
         // To disabled submit button at the beginning.
         this.props.form.validateFields();
@@ -25,10 +46,11 @@ class LoginForm extends React.Component {
         invokeApi('post', '/login?username=' + u + '&password=' + p,
             (res) => {
                 console.log(res.data)
-                this.doSetCookie(u,res.data.token)
+                this.doSetCookie(u, res.data.token)
             },
             (err) => {
-                alert(err)
+                // alert(err)
+                openNotification('error')
             }
         )
     }
@@ -37,6 +59,7 @@ class LoginForm extends React.Component {
         invokeApi('post', '/writecookie?username=' + u + '&token=' + t,
             (res) => {
                 console.log(res.data)
+                this.setLoggedIn()
             },
             (err) => {
                 alert(err)
@@ -53,6 +76,16 @@ class LoginForm extends React.Component {
                 alert(err)
             }
         )
+    }
+
+    setLoggedIn = () => {
+
+        this.props.setLoggedIn(true)
+
+        // let { dispatch } = this.props
+        // let action = actions.setLoggedIn(true)
+        // dispatch(action)
+        // alert('set Redux !!')
     }
 
     render() {
@@ -75,7 +108,7 @@ class LoginForm extends React.Component {
                 </Form.Item>
                 <Form.Item validateStatus={passwordError ? 'error' : ''} help={passwordError || ''}>
                     {getFieldDecorator('password', {
-                        rules: [{ required: true, message: 'Please input your Password!' }],
+                        rules: [{ required: true, message: 'Please input your password!' }],
                     })(
                         <Input
                             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -94,6 +127,19 @@ class LoginForm extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    thisLoggedIn: state.auth.loggedIn
+})
+
+const mapDispatchToProps = dispatch => ({
+    ...bindActionCreators(
+        {
+            setLoggedIn,
+        },
+        dispatch,
+    )
+})
+
 const WrappedLoginForm = Form.create({ name: 'horizontal_login' })(LoginForm)
 
-export default WrappedLoginForm
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedLoginForm)

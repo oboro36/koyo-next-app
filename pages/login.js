@@ -1,10 +1,9 @@
 import React from 'react'
 import LoginForm from '../components/login'
 
-import { connect } from "react-redux";
-import store from "../redux/store";
-
 import Router from 'next/router'
+
+import { connect } from "react-redux"
 
 class Login extends React.Component {
     constructor(props) {
@@ -15,7 +14,7 @@ class Login extends React.Component {
     componentDidMount() {
         Router.push('/login', '/login', { shallow: true });
     }
-    
+
 
     render() {
         return (
@@ -25,7 +24,9 @@ class Login extends React.Component {
                     height: 100vh;
                     width: 100%;
                     position: relative;
-                    border: 3px solid green; 
+                    // border: 3px solid green; 
+                    background-image: url("static/bg.png");
+                    background-repeat: repeat;
                 }
                 .center .loginform {
                     margin: 0;
@@ -36,7 +37,10 @@ class Login extends React.Component {
                     transform: translate(-50%, -50%);
                 }
                 `}</style>
-                <div className="loginform"><LoginForm /></div>
+                <div className="loginform">
+                    <div style={{display: 'flex', justifyContent: 'center'}}><img style={{ margin: ' 10px 0px 35px 0px', width: '25%' }} src="static/torii.svg" /></div>
+                    <LoginForm />
+                </div>
             </div>
         )
     }
