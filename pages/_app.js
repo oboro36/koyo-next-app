@@ -29,6 +29,9 @@ class MyApp extends App {
 
     render() {
         const { Component, pageProps, store } = this.props
+        // store.subscribe(() => {
+        //     console.log(store.getState());
+        // });
         return (
             <Provider store={store}>
                 {

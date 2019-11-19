@@ -62,9 +62,9 @@ class LoginForm extends React.Component {
             async (res) => {
                 console.log(res.data)
                 try{
-                    let result = await this.setLoggedIn()
+                    let result = await this.setLoggedIn(u)
 
-                    result && Router.push('/')
+                    result && Router.push('/main')
 
                 }catch(e){
                     alert(e)
@@ -87,9 +87,9 @@ class LoginForm extends React.Component {
         )
     }
 
-    setLoggedIn = () => {
+    setLoggedIn = (u) => {
         return new Promise((resolve,reject) =>{
-            this.props.setLoggedIn(true)
+            this.props.setLoggedIn(true,u)
             if(this.props.thisLoggedIn == true){
                 resolve(true)
             }else{

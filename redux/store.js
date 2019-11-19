@@ -7,7 +7,3 @@ const makeStore = (initialState, options) => {
 
 export default makeStore
 
-
-// store.subscribe(() => {
-//     console.log(store.getState());
-// });

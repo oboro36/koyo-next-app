@@ -3,6 +3,8 @@ import Header from './header'
 import Footer from './footer'
 import Sidebar from './sidebar'
 
+import { connect } from "react-redux"
+
 const { Content } = Layout;
 
 class MainLayout extends React.Component {
@@ -45,7 +47,7 @@ class MainLayout extends React.Component {
     return (
       <React.Fragment>
         <Layout style={{ minHeight: '100vh' }}>
-          <Sidebar doCollapse={this.setCollapse} />
+          <Sidebar doCollapse={this.setCollapse} loggedUser={this.props.thisLoggedUser}/>
           <Layout style={this.state.initStyle}>
             {/* <Header /> */}
             <Content style={{ margin: '12px 12px' }}>
@@ -61,4 +63,8 @@ class MainLayout extends React.Component {
   }
 }
 
-export default MainLayout
+const mapStateToProps = (state) => ({
+  thisLoggedUser: state.auth.loggedUser.name
+})
+
+export default connect(mapStateToProps)(MainLayout)

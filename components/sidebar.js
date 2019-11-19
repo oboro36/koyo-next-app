@@ -4,6 +4,11 @@ import Link from 'next/link'
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux"
+import { setLoggedIn } from "../redux/actions"
+
+
 class SideBar extends React.Component {
 
     constructor(props) {
@@ -79,7 +84,7 @@ class SideBar extends React.Component {
     handleMenuClick = (event) => {
         const pageName = event.item.props.name
         this.setContent(pageName)
-        Router.push({ pathname: '/' + pageName})
+        Router.push({ pathname: '/' + pageName })
         // Router.push({ pathname: '/' + pageName, query: { name: 'PALM' } })
     }
 
@@ -87,11 +92,13 @@ class SideBar extends React.Component {
         this.setState({ content: content })
     }
 
+    doLogout
+
     render() {
         return (
             <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}
                 style={{
-                    overflow: 'auto',
+                    overflow: 'hidden',
                     height: '100vh',
                     position: 'fixed',
                     left: 0,
@@ -107,28 +114,28 @@ class SideBar extends React.Component {
                             :
                             <div style={this.style}>
                                 <Avatar icon="user" />
-                                <span> Mr.Palm </span>
-                                <Button type="primary" shape="circle" icon="setting" size="default" onClick={this.showModal}/>
-                                <Link href="/">
-                                    <Button type="danger" shape="circle" icon="logout" size="default" />
-                                </Link>
+                                <span style={{ fontWeight: 'bold' }}> {this.props.loggedUser} </span>
+                                <Button type="primary" shape="circle" icon="setting" size="default" onClick={this.showModal} />
+                                {/* <Link href="/"> */}
+                                    <Button type="danger" shape="circle" icon="logout" size="default" onClick={()=>{rou}} />
+                                {/* </Link> */}
                             </div>
                         }
                     </div>
                     <Menu theme="dark" mode="inline" onClick={this.handleMenuClick}>
                         <Menu.Item key="1" name="main">
-                            <Icon type="pie-chart" />
+                            <Icon type="dashboard" theme="filled" />
                             <span>Dashboard</span>
                         </Menu.Item>
                         <Menu.Item key="2" name="about">
-                            <Icon type="file" />
+                            <Icon type="idcard" theme="filled" />
                             <span>About</span>
                         </Menu.Item>
                         <SubMenu
                             key="sub1"
                             title={
                                 <span>
-                                    <Icon type="user" />
+                                    <Icon type="appstore" theme="filled" />
                                     <span>Utility</span>
                                 </span>
                             }
@@ -156,4 +163,14 @@ SideBar.getInitialProps = async ({ req }) => {
     return { isServer: !!req };
 };
 
-export default SideBar
+const mapDispatchToProps = dispatch => ({
+    ...bindActionCreators(
+        {
+            setLoggedIn,
+        },
+        dispatch,
+    )
+})
+
+
+export default connect(null, mapDispatchToProps)(SideBar)
