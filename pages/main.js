@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, Table, Button } from 'antd'
-import LoginForm from '../components/login'
 import { invokeApi } from '../base/axios'
 
 const columns = [
@@ -60,7 +59,6 @@ class Main extends React.Component {
                 <Card>
                     <h1>Hello, Contents from "<strong>main.js</strong>" is being rendered as starter content</h1>
                 </Card>
-                <Card><LoginForm /></Card>
                 <Card><Button type="primary" onClick={this.getPerson}>Get Data</Button></Card>
                 <Card>
                     <Table

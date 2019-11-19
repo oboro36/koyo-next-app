@@ -3,8 +3,6 @@ import LoginForm from '../components/login'
 
 import Router from 'next/router'
 
-import { connect } from "react-redux"
-
 class Login extends React.Component {
     constructor(props) {
         super(props)
@@ -14,7 +12,6 @@ class Login extends React.Component {
     componentDidMount() {
         Router.push('/login', '/login', { shallow: true });
     }
-
 
     render() {
         return (

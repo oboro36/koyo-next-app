@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux"
 import { setLoggedIn } from "../redux/actions"
 
+import Router from 'next/router'
+
 function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
@@ -57,9 +59,16 @@ class LoginForm extends React.Component {
 
     doSetCookie = (u, t) => {
         invokeApi('post', '/writecookie?username=' + u + '&token=' + t,
-            (res) => {
+            async (res) => {
                 console.log(res.data)
-                this.setLoggedIn()
+                try{
+                    let result = await this.setLoggedIn()
+
+                    result && Router.push('/')
+
+                }catch(e){
+                    alert(e)
+                }
             },
             (err) => {
                 alert(err)
@@ -79,13 +88,18 @@ class LoginForm extends React.Component {
     }
 
     setLoggedIn = () => {
+        return new Promise((resolve,reject) =>{
+            this.props.setLoggedIn(true)
+            if(this.props.thisLoggedIn == true){
+                resolve(true)
+            }else{
+                reject(new Error('Cannot setup login status'))
+            }
+        })
+    }
 
-        this.props.setLoggedIn(true)
-
-        // let { dispatch } = this.props
-        // let action = actions.setLoggedIn(true)
-        // dispatch(action)
-        // alert('set Redux !!')
+    tryme = () => {
+        console.log(this.props)
     }
 
     render() {
@@ -120,6 +134,11 @@ class LoginForm extends React.Component {
                 <Form.Item>
                     <Button type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())}>
                         Log in
+                    </Button>
+                </Form.Item>
+                <Form.Item>
+                    <Button type="danger" htmlType="button" onClick={this.tryme}>
+                        Try Me
                     </Button>
                 </Form.Item>
             </Form>
