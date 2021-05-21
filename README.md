@@ -1,6 +1,6 @@
 # koyo-next-app
 
-Front-end source file for KOYO :maple_leaf:
+Front-end source file for app testing
 
 Based on:
 
